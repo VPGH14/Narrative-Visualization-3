@@ -1,0 +1,115 @@
+<html>
+
+<h1>Some Gasoline Cars can be efficient too!-</h1>
+        
+<p> Here we are doing a deep dive of the gasoline cars that are most fuel efficient.</p>
+
+        
+<button type="button" onclick="GoToNextPage()">Click to see electric cars!</button>        
+        
+<script src='https://d3js.org/d3.v5.min.js'></script>
+<style> circle {fill: lightblue; stroke: black;} </style>
+<style> rect {fill: none; stroke: black;} </style>
+
+<style> 
+#tooltip {
+            opacity:0;
+            position: absolute;
+            text-align: center;
+            width: 60px; 
+            height: 40px;
+            background: steelblue;
+            border: 1px;
+        }
+</style>
+
+<body onload='init()'>
+<svg class = "chart" width=700 height=700></svg>
+<div id="tooltip"></div>
+        
+      
+<script>
+        
+async function init() {
+
+scaleL = d3.scaleLog().domain([40,60]).range([0,600]) 
+scaleY = d3.scaleLog().domain([40,60]).range([600,0]) 
+      
+const data = await d3.csv(
+        'https://flunky.github.io/cars2017.csv');
+    d3.select(".chart")
+      .append("g")
+        .attr("transform","translate(50,50)")
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+         .attr("cx", function(d,i) { return scaleL(d["AverageCityMPG"]); })
+         .attr("cy", function(d,i) { return 600 -
+                                         scaleL(d["AverageHighwayMPG"]);})
+         .attr("r", function(d,i) { return (8 + +d["EngineCylinders"]);})
+         .on("mouseover", function(d,i){
+               div.tooltip.style("opacity",1)
+               .style("left",(d3.event.pageX+10)+"px")
+               .style("top",(d3.event.pageY-10)+"px")
+               .html("this is a tooltip");
+
+         })
+        .on("mouseout", function() {tooltip.style("opacity",0);});
+
+d3.select(".chart").append("g")
+   .attr("transform","translate(50,50)")
+   .attr("fill","none")
+   .attr("font-size","10")
+   .attr("font-family","sans-serif")
+   .attr("text-anchor","end")
+.call(d3.axisLeft(scaleY).tickFormat(d3.format("~s")).tickValues([10,20,50,100]));
+        
+d3.select(".chart").append("g")
+   .attr("transform","translate(50,650)")
+   .attr("fill","none")
+   .attr("font-size","10")
+   .attr("font-family","sans-serif")
+   .attr("text-anchor","end")
+   .call(d3.axisBottom(scaleL).tickFormat(d3.format("~s")).tickValues([10,20,50,100]));
+  
+d3.select(".chart").append("text")
+    .attr("x", 300)
+    .attr("y", 690)
+    .text("Average City MPG"); 
+
+d3.select(".chart").append("text")
+    .attr("transform","translate(10,350) rotate(-90)")    
+    .text("Average Highway MPG"); 
+        
+d3.select(".chart").append("text")
+    .attr("x", 300)
+    .attr("y", 15)
+    .attr("font-weight",200)
+    .text("Fuel Efficiency by Car Make");
+        
+d3.select(".chart").append("text")
+    .attr("x", 300)
+    .attr("y", 520)
+    .text("Note: the size of each bubble is representative of");
+
+d3.select(".chart").append("text")
+    .attr("x", 330)
+    .attr("y", 540)
+    .text("how many engine cylinders it has."); 
+
+d3.select(".chart").append("rect")
+    .attr("x", 290)
+    .attr("y", 500)
+    .attr("width", 350)
+    .attr("height", 60);
+}
+
+var GoToNextPage = function() { window.open("https://vpgh14.github.io/Narrative-Visualization-2/", "_blank");}
+        
+        
+        
+</script>
+</body>
+        
+</html>
