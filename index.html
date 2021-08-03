@@ -1,6 +1,6 @@
 <html>
 
-<h1>Some Gasoline Cars can be efficient too! EDIT 3 </h1>
+<h1>Some Gasoline Cars can be efficient too! EDIT 4 </h1>
         
 <p> Here we are doing a deep dive of the gasoline cars that are most fuel efficient.</p>
 
@@ -42,7 +42,6 @@ const data = await d3.csv(
       .data(data)
       .enter()
       .append('circle')
-         .filter(function(d) { return d["AverageCityMPG"] < 75 })
          .filter(function(d) { return d["AverageCityMPG"] > 40 })
          .attr("cx", function(d,i) { return scaleL(d["AverageCityMPG"]); })
          .attr("cy", function(d,i) { return 600 -
@@ -104,8 +103,6 @@ d3.select(".chart").append("rect")
     .attr("width", 350)
     .attr("height", 60);
 }
-
-var GoToNextPage = function() { window.open("https://vpgh14.github.io/Narrative-Visualization-2/", "_blank");}
         
         
         
