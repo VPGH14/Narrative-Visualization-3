@@ -1,6 +1,6 @@
 <html>
 
-<h1>Some Gasoline Cars can be efficient too! EDIT 2 </h1>
+<h1>Some Gasoline Cars can be efficient too! EDIT 3 </h1>
         
 <p> Here we are doing a deep dive of the gasoline cars that are most fuel efficient.</p>
 
@@ -30,8 +30,8 @@
         
 async function init() {
 
-scaleL = d3.scaleLog().domain([30,75]).range([0,600]) 
-scaleY = d3.scaleLog().domain([30,75]).range([600,0]) 
+scaleL = d3.scaleLinear().domain([30,75]).range([0,600]) 
+scaleY = d3.scaleLinear().domain([30,75]).range([600,0]) 
       
 const data = await d3.csv(
         'https://flunky.github.io/cars2017.csv');
