@@ -1,6 +1,6 @@
 <html>
 
-<h1>Some Gasoline Cars can be efficient too! EDIT 6 </h1>
+<h1>Some Gasoline Cars can be efficient too! EDIT 7 </h1>
         
 <p> Here we are doing a deep dive of the gasoline cars that are most fuel efficient.</p>
 
@@ -30,8 +30,8 @@
         
 async function init() {
 
-scaleL = d3.scaleLog().domain([30,100]).range([0,600]) 
-scaleY = d3.scaleLog().domain([30,100]).range([600,0]) 
+scaleL = d3.scaleLog().domain([20,70]).range([0,600]) 
+scaleY = d3.scaleLog().domain([20,70]).range([600,0]) 
       
 const data = await d3.csv(
         'https://flunky.github.io/cars2017.csv');
@@ -46,7 +46,7 @@ const data = await d3.csv(
          .attr("cx", function(d,i) { return scaleL(d["AverageCityMPG"]); })
          .attr("cy", function(d,i) { return 600 -
                                          scaleL(d["AverageHighwayMPG"]);})
-         .attr("r", function(d,i) { return (15 + +d["EngineCylinders"]);})
+         .attr("r", function(d,i) { return (10 + +d["EngineCylinders"]);})
          .on("mouseover", function(d,i){
                div.tooltip.style("opacity",1)
                .style("left",(d3.event.pageX+10)+"px")
