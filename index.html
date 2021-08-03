@@ -1,6 +1,6 @@
 <html>
 
-<h1>Some Gasoline Cars can be efficient too! EDIT 4 </h1>
+<h1>Some Gasoline Cars can be efficient too! EDIT 5 </h1>
         
 <p> Here we are doing a deep dive of the gasoline cars that are most fuel efficient.</p>
 
@@ -30,8 +30,8 @@
         
 async function init() {
 
-scaleL = d3.scaleLinear().domain([30,75]).range([0,600]) 
-scaleY = d3.scaleLinear().domain([30,75]).range([600,0]) 
+scaleL = d3.scaleLog().domain([70,150]).range([0,600]) 
+scaleY = d3.scaleLog().domain([70,150]).range([600,0]) 
       
 const data = await d3.csv(
         'https://flunky.github.io/cars2017.csv');
@@ -46,7 +46,7 @@ const data = await d3.csv(
          .attr("cx", function(d,i) { return scaleL(d["AverageCityMPG"]); })
          .attr("cy", function(d,i) { return 600 -
                                          scaleL(d["AverageHighwayMPG"]);})
-         .attr("r", function(d,i) { return (8 + +d["EngineCylinders"]);})
+         .attr("r", function(d,i) { return (15 + +d["EngineCylinders"]);})
          .on("mouseover", function(d,i){
                div.tooltip.style("opacity",1)
                .style("left",(d3.event.pageX+10)+"px")
@@ -90,12 +90,12 @@ d3.select(".chart").append("text")
 d3.select(".chart").append("text")
     .attr("x", 300)
     .attr("y", 520)
-    .text("Note: the size of each bubble is representative of");
+    .text("Of the different electric car brands");
 
 d3.select(".chart").append("text")
     .attr("x", 330)
     .attr("y", 540)
-    .text("how many engine cylinders it has."); 
+    .text("XXY is the most fuel efficient!"); 
 
 d3.select(".chart").append("rect")
     .attr("x", 290)
