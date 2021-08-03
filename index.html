@@ -48,10 +48,10 @@ const data = await d3.csv(
                                          scaleL(d["AverageHighwayMPG"]);})
          .attr("r", function(d,i) { return (10 + +d["EngineCylinders"]);})
          .on("mouseover", function(d,i){
-               div.tooltip.style("opacity",1)
+               d3.select("#tooltip").style("opacity",1)
                .style("left",(d3.event.pageX+10)+"px")
                .style("top",(d3.event.pageY-10)+"px")
-               .html("this is a tooltip");
+               .html(d["Make"]);
 
          })
         .on("mouseout", function() {tooltip.style("opacity",0);});
